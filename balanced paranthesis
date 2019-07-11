@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    stack <char> s;
+    int n,i;
+    string expr;
+    cin>>expr;
+    n=expr.length();
+    if(n==1)
+        return false;
+    for(i=0;i<n;i++)
+    {
+    if(expr[i]=='(' || expr[i]=='[' || expr[i]=='{')
+        {
+            s.push(expr[i]);
+            continue;
+        }
+        if(s.empty())
+            return false;
+    if(expr[i]==')')
+    {
+        if(s.top()!='(' || s.empty() )
+           return false;
+        else
+            s.pop();
+    }
+    if(expr[i]==']')
+    {
+        if(s.top()!='['|| s.empty())
+           return false;
+        else
+            s.pop();
+    }
+    if(expr[i]=='}')
+    {
+        if(s.top()!='{' || s.empty())
+           return false;
+        else
+            s.pop();
+    }
+    }
+    if(s.empty())
+        return true;
+    else
+        return false;
+}
